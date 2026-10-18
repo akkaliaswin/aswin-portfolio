@@ -1,0 +1,147 @@
+.education {
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.sectionHead {
+  margin-bottom: 3rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Education Card */
+.eduCard {
+  display: flex;
+  gap: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem;
+  transition: border-color var(--transition-base);
+}
+
+.eduCard:hover {
+  border-color: var(--border-light);
+}
+
+.eduIcon {
+  width: 48px;
+  height: 48px;
+  background: var(--accent-blue-dim);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.eduDegree {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.375rem;
+  line-height: 1.35;
+}
+
+.eduInstitution {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.eduMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.eduPeriod {
+  color: var(--text-subtle);
+}
+
+.eduSep {
+  color: var(--border-light);
+}
+
+.eduCgpa {
+  color: var(--accent-cyan);
+}
+
+/* Recognition */
+.recognitionGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.recCard:hover {
+  border-color: color-mix(in srgb, var(--rec-accent) 25%, transparent);
+  transform: translateY(-2px);
+}
+
+.recHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.recIcon {
+  font-size: 1.125rem;
+}
+
+.recTitle {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.recBadge {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-cyan);
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  border-radius: 100px;
+  padding: 0.15rem 0.5rem;
+}
+
+.recDesc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .eduCard {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,121 @@
+.skills {
+  background: var(--bg-primary);
+  position: relative;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.skills::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-blue), transparent);
+  opacity: 0.3;
+}
+
+.sectionHead {
+  margin-bottom: 2.75rem;
+}
+
+/* 4-Card 2x2 Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.groupCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.groupCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--group-accent, var(--accent-cyan));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.groupCard:hover {
+  border-color: color-mix(in srgb, var(--group-accent, #6E8BFF) 35%, transparent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.groupCard:hover::before {
+  opacity: 0.9;
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.groupIcon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.groupLabel {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.groupSubtitle {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+  margin: 0.2rem 0 0 0;
+  line-height: 1.35;
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+}
+
+.skillChip {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background: rgba(110, 139, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  line-height: 1.4;
+}
+
+.groupCard:hover .skillChip {
+  border-color: color-mix(in srgb, var(--group-accent, #6E8BFF) 25%, transparent);
+  color: var(--text-primary);
+  background: rgba(110, 139, 255, 0.08);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}

@@ -1,0 +1,307 @@
+.contact {
+  background: var(--bg-base);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
+}
+
+.ambientGlow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 350px;
+  background: radial-gradient(ellipse at center, rgba(110, 139, 255, 0.08) 0%, rgba(103, 232, 249, 0.03) 50%, transparent 75%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.contentWrapper {
+  max-width: 820px;
+  margin: 0 auto 5rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background: rgba(8, 17, 31, 0.85);
+  border: 1px solid rgba(103, 232, 249, 0.25);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34D399;
+  box-shadow: 0 0 10px #34D399;
+  position: relative;
+}
+
+.statusDot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid #34D399;
+  opacity: 0.6;
+  animation: pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.subtext {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 2.75rem;
+}
+
+.ctaGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.primaryCta {
+  padding: 0.95rem 2.4rem;
+  font-size: 1rem;
+  box-shadow: 0 12px 32px rgba(110, 139, 255, 0.25);
+}
+
+.channelsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.channelCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all var(--transition-base);
+  position: relative;
+  text-decoration: none;
+}
+
+.channelCard:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.channelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.channelIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(110, 139, 255, 0.08);
+  border: 1px solid var(--border-light);
+  color: var(--accent-cyan);
+}
+
+.channelArrow {
+  color: var(--text-subtle);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.channelCard:hover .channelArrow {
+  transform: translate(3px, -3px);
+  color: var(--accent-cyan);
+}
+
+.channelLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.channelValue {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.channelMeta {
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+}
+
+.copyNotice {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: #34D399;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+  padding: 3rem 0;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footerMonogram {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footerArrow {
+  color: var(--accent-cyan);
+  font-size: 0.9rem;
+}
+
+.footerTagline {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.footerCopy {
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+}
+
+.backToTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.backToTop:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-blue);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .channelsGrid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+
+  .footerInner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .backToTop {
+    align-self: flex-start;
+  }
+}
