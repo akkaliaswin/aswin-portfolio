@@ -1,105 +1,231 @@
 .about {
-  background: var(--bg-primary);
+  background: transparent;
   position: relative;
+}
+
+.heading {
+  margin-bottom: 1.25rem;
+}
+
+.editorialHighlight {
+  color: var(--signal-orange);
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15em;
+  letter-spacing: 0;
 }
 
 .layout {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 5rem;
-  margin-top: 2.5rem;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 3.5rem;
+  margin-top: 3.5rem;
   align-items: start;
 }
 
-.heading {
-  margin-bottom: 1.75rem;
-}
-
-.body {
+/* Narrative Column */
+.narrativeCol {
   display: flex;
   flex-direction: column;
-  gap: 1.125rem;
-  margin-bottom: 2rem;
+  gap: 2.5rem;
 }
 
-.body p {
-  font-size: 1.0125rem;
+.leadNarrative {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 1.05rem;
   line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.leadNarrative strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Capability Tags Wrap */
+.tagsWrap {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(16, 19, 27, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.tagsLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--signal-orange);
+  margin-bottom: 1rem;
+}
+
+.tagsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.tagPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.tagPill:hover {
+  background: rgba(255, 75, 38, 0.08);
+  border-color: rgba(255, 75, 38, 0.35);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.tagDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--signal-orange);
+}
+
+/* Specification Column */
+.specCol {
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+}
+
+.specCard {
+  background: rgba(16, 19, 27, 0.85);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.specHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+}
+
+.specTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--signal-orange);
+  font-weight: 600;
+}
+
+.specDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal-orange);
+}
+
+.specStatus {
   color: var(--text-muted);
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-/* Metrics */
-.rightCol {
-  position: sticky;
-  top: 6rem;
-}
-
+/* Metrics Grid inside Spec Card */
 .metricsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--border-subtle);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  margin-bottom: 1.25rem;
+  gap: 1.25rem;
 }
 
-.metric {
-  background: var(--bg-secondary);
-  padding: 1.75rem 1.5rem;
+.metricBlock {
+  background: rgba(8, 9, 12, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 1.15rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  transition: background var(--transition-base);
+  gap: 0.35rem;
+  transition: all var(--transition-fast);
 }
 
-.metric:hover {
-  background: var(--bg-card-hover);
+.metricBlock:hover {
+  border-color: rgba(255, 75, 38, 0.3);
 }
 
-.metricValue {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1;
+.metricCodeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+.metricCode {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.metricPulse {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--signal-emerald);
+}
+
+.metricValueWrap {
   display: flex;
   align-items: baseline;
   gap: 0.15rem;
 }
 
+.metricNumber {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
 .metricSuffix {
-  font-size: 1.5rem;
-  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--signal-orange);
 }
 
 .metricLabel {
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: var(--text-muted);
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
   white-space: pre-line;
 }
 
-.metricsNote {
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  background: rgba(110, 139, 255, 0.03);
+.specFooter {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
-.noteText {
+.specDisclaimer {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  line-height: 1.6;
-  color: var(--text-subtle);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: var(--text-muted);
 }
 
 /* Responsive */
@@ -108,16 +234,24 @@
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  .rightCol {
+  .specCol {
     position: static;
   }
 }
 
-@media (max-width: 480px) {
-  .metricValue {
-    font-size: 2rem;
+@media (max-width: 640px) {
+  .layout {
+    margin-top: 2.25rem;
   }
-  .metric {
-    padding: 1.25rem 1rem;
+  .leadNarrative {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .metricsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  .pillarCard {
+    padding: 1.15rem;
   }
 }

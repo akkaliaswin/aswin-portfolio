@@ -1,19 +1,21 @@
 .strip {
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
-  background: var(--bg-primary);
+  background: rgba(16, 19, 27, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 0;
   overflow: hidden;
   position: relative;
 }
 
-/* Static layout — shown for reduced motion and small screens */
+/* Static layout — shown for reduced motion only */
 .staticItems {
   display: none;
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
-  padding: 1.25rem var(--container-pad);
+  padding: 0.85rem var(--container-pad);
 }
 
 .item {
@@ -21,69 +23,62 @@
   align-items: center;
   gap: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.1em;
-  color: var(--text-subtle);
+  color: var(--text-muted);
   text-transform: uppercase;
 }
 
 .dot {
-  color: var(--accent-cyan);
-  opacity: 0.5;
+  color: var(--signal-orange);
+  opacity: 0.8;
 }
 
 /* Animated ticker */
 .ticker {
   display: flex;
   align-items: center;
-  height: 52px;
+  height: 44px;
   overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
 }
 
 .track {
   display: flex;
   align-items: center;
   gap: 0;
-  animation: ticker 30s linear infinite;
+  animation: ticker 26s linear infinite;
   white-space: nowrap;
+  will-change: transform;
 }
 
 @keyframes ticker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .tickerItem {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0 2.5rem;
+  gap: 1.5rem;
+  padding: 0 1.5rem;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.15em;
-  color: var(--text-subtle);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
   text-transform: uppercase;
-  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .tickerDot {
-  font-size: 0.4rem;
-  color: var(--accent-cyan);
-  opacity: 0.6;
+  font-size: 0.5rem;
+  color: var(--signal-orange);
+  opacity: 0.9;
 }
 
-/* Reduced motion — show static, hide ticker */
+/* Reduced motion override */
 @media (prefers-reduced-motion: reduce) {
-  .ticker {
-    display: none;
-  }
-  .staticItems {
-    display: flex;
-  }
-}
-
-/* Small screens — always show static */
-@media (max-width: 640px) {
   .ticker {
     display: none;
   }

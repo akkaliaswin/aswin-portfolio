@@ -1,156 +1,286 @@
 .projects {
-  background: var(--bg-secondary);
+  background: transparent;
   position: relative;
-  border-top: 1px solid var(--border-subtle);
 }
 
-.intro {
-  max-width: 720px;
-  margin-bottom: 2.75rem;
+.heading {
+  margin-bottom: 1.25rem;
 }
 
-.lead {
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.subLead {
+.introLead {
   font-size: 0.95rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--text-muted);
-  margin: 0;
+  max-width: 680px;
+  margin-top: 0.75rem;
 }
 
-.grid {
+/* Case Study Grid */
+.caseStudyGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+  align-items: start;
 }
 
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
+/* Case Selector List */
+.caseSelectorList {
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
+}
+
+.caseSelectorCard {
+  background: rgba(16, 19, 27, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  cursor: pointer;
   transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--card-accent, #67E8F9);
-  opacity: 0;
-  transition: opacity var(--transition-base);
+.caseSelectorCard:hover {
+  background: rgba(22, 26, 38, 0.85);
+  border-color: var(--border-light);
+  transform: translateX(4px);
 }
 
-.card:hover {
-  border-color: color-mix(in srgb, var(--card-accent, #6E8BFF) 35%, transparent);
-  background: var(--bg-card-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+.caseCardActive {
+  background: rgba(22, 26, 38, 0.95);
+  border-color: var(--signal-orange);
+  box-shadow: 0 8px 32px var(--signal-orange-dim);
 }
 
-.card:hover::before {
-  opacity: 1;
-}
-
-.cardTop {
+.caseCardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.statusBadge {
+.caseCategory {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--signal-orange);
+  font-weight: 600;
+}
+
+.caseBadge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-xs);
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
   color: var(--text-muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  white-space: nowrap;
 }
 
-.statusDot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--card-accent, #34D399);
+.caseBadgeActive {
+  background: var(--signal-orange-dim);
+  color: var(--signal-orange);
 }
 
-.cardTitle {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
+.caseTitle {
+  font-family: var(--font-tech);
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.3;
-  margin: 0 0 0.85rem 0;
 }
 
-.cardDesc {
-  font-size: 0.9rem;
-  line-height: 1.65;
+.caseBrief {
+  font-size: 0.85rem;
+  line-height: 1.55;
   color: var(--text-muted);
-  margin: 0 0 1.25rem 0;
-  flex: 1;
 }
 
-.techLine {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-subtle);
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-subtle);
-  line-height: 1.5;
-}
-
-.toggleAction {
+/* In-Depth Case Dossier Panel */
+.caseDossierPanel {
+  background: rgba(16, 19, 27, 0.88);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.toggleBtn {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--accent-cyan);
-  background: rgba(56, 189, 248, 0.05);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  padding: 0.55rem 1.25rem;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  display: inline-flex;
+.dossierHeader {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dossierTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dossierDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal-orange);
+}
+
+.dossierMainTitle {
+  font-family: var(--font-tech);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.dossierMetrics {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--signal-emerald);
+}
+
+.dossierContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.problemSolutionRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dossierBlock {
+  background: rgba(8, 9, 12, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
   gap: 0.45rem;
 }
 
-.toggleBtn:hover {
-  background: rgba(56, 189, 248, 0.12);
-  border-color: rgba(56, 189, 248, 0.45);
-  transform: translateY(-1px);
+.dossierBlockLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--signal-orange);
+  font-weight: 600;
 }
 
-@media (max-width: 1024px) {
-  .grid {
+.dossierBlockText {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* Tech Stack */
+.techStackRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.techLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.techChip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+/* Highlights Container */
+.highlightsContainer {
+  background: rgba(8, 9, 12, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.highlightsLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--signal-orange);
+  font-weight: 600;
+}
+
+.highlightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.highlightDot {
+  color: var(--signal-orange);
+  font-size: 0.6rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .caseStudyGrid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .caseDossierPanel {
+    padding: 1.35rem 1rem;
+    gap: 1.25rem;
+  }
+  .caseSelectorCard {
+    padding: 1.15rem;
+  }
+  .techStackRow {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

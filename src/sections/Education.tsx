@@ -5,22 +5,20 @@ const EDUCATION = {
   degree: "Bachelor's in Computer Science & Engineering (Honours)",
   institution: 'Rajagiri School of Engineering and Technology',
   period: '2016 – 2020',
-  cgpa: '8.23',
+  cgpa: '8.23 CGPA',
+  coursework: 'Distributed Systems, Operating Systems, Computer Networks, Database Systems, Data Structures & Algorithms',
 }
 
 const RECOGNITION = [
   {
     title: 'Team Award',
     description: 'Recognition for professional delivery and working within SLA timelines.',
-    icon: '◈',
-    accent: '#F59E0B',
+    accent: '#FFB020',
   },
   {
-    title: 'Docker Foundations',
-    description: 'Professional Certificate — Docker Foundations.',
-    icon: '◇',
-    accent: '#67E8F9',
-    badge: 'CERTIFICATE',
+    title: 'Docker Foundations Certificate',
+    description: 'Docker Foundations professional certificate.',
+    accent: '#38BDF8',
   },
 ]
 
@@ -30,44 +28,49 @@ export default function Education() {
   return (
     <section id="education" className={`section ${styles.education}`} aria-labelledby="edu-heading">
       <div className="container">
-        <p className="section-label reveal">06 / FOUNDATIONS · EDUCATION &amp; RECOGNITION</p>
+        {/* Section Header */}
+        <div className="section-meta reveal">
+          <span>06 / FOUNDATIONS · EDUCATION &amp; RECOGNITION</span>
+        </div>
 
-        <div className={`reveal ${styles.sectionHead}`}>
-          <h2 id="edu-heading" className="section-heading">
+        <div className="reveal">
+          <h2 id="edu-heading" className={`section-heading ${styles.heading}`}>
             Where it <span className="gradient-text">started.</span>
           </h2>
+          <p className="section-subheading">
+            Computer science engineering foundation and professional recognition.
+          </p>
         </div>
 
         <div className={`${styles.layout} reveal`} ref={ref as React.RefObject<HTMLDivElement>}>
-          {/* Education Card */}
+          {/* Degree Card */}
           <div className={styles.eduCard}>
-            <div className={styles.eduIcon} aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M12 3L2 8l10 5 10-5-10-5zM2 13l10 5 10-5M2 18l10 5 10-5" stroke="#6E8BFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <div className={styles.eduHeader}>
+              <span className={styles.eduCode}>B.TECH (HONOURS)</span>
+              <span className={styles.eduScore}>{EDUCATION.cgpa}</span>
             </div>
-            <div>
-              <h3 className={styles.eduDegree}>{EDUCATION.degree}</h3>
-              <p className={styles.eduInstitution}>{EDUCATION.institution}</p>
-              <div className={styles.eduMeta}>
-                <span className={styles.eduPeriod}>{EDUCATION.period}</span>
-                <span className={styles.eduSep}>·</span>
-                <span className={styles.eduCgpa}>CGPA {EDUCATION.cgpa}</span>
-              </div>
+
+            <h3 className={styles.eduDegree}>{EDUCATION.degree}</h3>
+            <p className={styles.eduInstitution}>{EDUCATION.institution}</p>
+            <p className={styles.eduPeriod}>Graduation Class of {EDUCATION.period}</p>
+
+            <div className={styles.courseworkBlock}>
+              <span className={styles.courseworkLabel}>CORE CURRICULUM:</span>
+              <p className={styles.courseworkText}>{EDUCATION.coursework}</p>
             </div>
           </div>
 
-          {/* Recognition Cards */}
-          <div className={styles.recognitionGrid}>
+          {/* Recognition Column */}
+          <div className={styles.recognitionCol}>
             {RECOGNITION.map((item) => (
-              <div key={item.title} className={styles.recCard} style={{ '--rec-accent': item.accent } as React.CSSProperties}>
+              <div key={item.title} className={styles.recCard}>
                 <div className={styles.recHeader}>
-                  <span className={styles.recIcon} style={{ color: item.accent }}>{item.icon}</span>
-                  <h4 className={styles.recTitle}>{item.title}</h4>
-                  {item.badge && (
-                    <span className={styles.recBadge}>{item.badge}</span>
-                  )}
+                  <span className={styles.recCode} style={{ color: item.accent }}>
+                    HONOUR &amp; CREDENTIAL
+                  </span>
+                  <span className={styles.recDot} style={{ background: item.accent }} />
                 </div>
+                <h4 className={styles.recTitle}>{item.title}</h4>
                 <p className={styles.recDesc}>{item.description}</p>
               </div>
             ))}

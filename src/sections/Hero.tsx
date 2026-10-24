@@ -1,251 +1,206 @@
-import { useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 
-const ORBIT_LABELS = [
-  { label: 'API INTEGRATIONS', angle: -20, radius: 200 },
-  { label: 'PAYMENT FLOWS', angle: 45, radius: 200 },
-  { label: 'BACKEND SYSTEMS', angle: 140, radius: 200 },
-  { label: 'CLOUD INFRASTRUCTURE', angle: 220, radius: 200 },
-]
-
 export default function Hero() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let animId: number
-    let t = 0
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const draw = () => {
-      const { width: w, height: h } = canvas
-      ctx.clearRect(0, 0, w, h)
-      const cx = w / 2
-      const cy = h / 2
-
-      // Outer orbit rings
-      const rings = [
-        { r: Math.min(w, h) * 0.42, opacity: 0.12 },
-        { r: Math.min(w, h) * 0.35, opacity: 0.08 },
-        { r: Math.min(w, h) * 0.28, opacity: 0.06 },
-      ]
-
-      rings.forEach(({ r, opacity }) => {
-        ctx.beginPath()
-        ctx.arc(cx, cy, r, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(110, 139, 255, ${opacity})`
-        ctx.lineWidth = 1
-        ctx.stroke()
-      })
-
-      // Orbit dots
-      const mainR = Math.min(w, h) * 0.42
-      const dots = [
-        { speed: 0.003, offset: 0, color: '#67E8F9', size: 3 },
-        { speed: -0.0018, offset: Math.PI, color: '#6E8BFF', size: 2.5 },
-        { speed: 0.0025, offset: Math.PI / 3, color: '#A78BFA', size: 2 },
-      ]
-
-      dots.forEach(({ speed, offset, color, size }) => {
-        const angle = t * speed + offset
-        const dx = cx + Math.cos(angle) * mainR
-        const dy = cy + Math.sin(angle) * mainR
-
-        // Trail
-        ctx.beginPath()
-        const gradient = ctx.createRadialGradient(dx, dy, 0, dx, dy, size * 4)
-        gradient.addColorStop(0, color)
-        gradient.addColorStop(1, 'transparent')
-        ctx.fillStyle = gradient
-        ctx.arc(dx, dy, size * 4, 0, Math.PI * 2)
-        ctx.fill()
-
-        // Core dot
-        ctx.beginPath()
-        ctx.arc(dx, dy, size, 0, Math.PI * 2)
-        ctx.fillStyle = color
-        ctx.fill()
-
-        // Connection line to center
-        ctx.beginPath()
-        ctx.moveTo(cx, cy)
-        ctx.lineTo(dx, dy)
-        ctx.strokeStyle = `${color}18`
-        ctx.lineWidth = 0.5
-        ctx.stroke()
-      })
-
-      // Center pulse
-      const pulse = 0.5 + 0.5 * Math.sin(t * 0.02)
-      const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60)
-      grd.addColorStop(0, `rgba(110, 139, 255, ${0.08 + pulse * 0.06})`)
-      grd.addColorStop(1, 'transparent')
-      ctx.fillStyle = grd
-      ctx.beginPath()
-      ctx.arc(cx, cy, 60, 0, Math.PI * 2)
-      ctx.fill()
-
-      t++
-      animId = requestAnimationFrame(draw)
-    }
-
-    draw()
-
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
   const handleScrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section id="hero" className={styles.hero} aria-label="Introduction">
-      <div className={styles.gridBg} aria-hidden="true" />
+    <section id="hero" className={styles.hero} aria-label="Introduction and Overview">
+      {/* Editorial Registration Crosshairs */}
+      <div className={styles.crosshairTopLeft} aria-hidden="true">+</div>
+      <div className={styles.crosshairTopRight} aria-hidden="true">+</div>
 
-      <div className={`container ${styles.inner}`}>
-        {/* Left Column */}
-        <div className={styles.left}>
-          {/* Identity Eyebrow Badge */}
-          <div className={styles.identityRow}>
-            <span className={styles.nameBadge}>ASWIN A</span>
-            <span className={styles.badgeSeparator}>//</span>
-            <span className={styles.roleBadge}>
-              <span className={styles.livePulse} />
-              Solutions Engineer @ Razorpay
-            </span>
+      <div className="container">
+        {/* Top Status Strip */}
+        <div className={styles.telemetryBar}>
+          <div className={styles.telemetryLeft}>
+            <span className={styles.statusDot} />
+            <span className={styles.statusText}>SOLUTIONS ENGINEER @ RAZORPAY · PREVIOUSLY TEMENOS</span>
           </div>
-
-          <p className={`${styles.eyebrow} font-mono`}>
-            SOLUTIONS ENGINEER @ RAZORPAY · PREVIOUSLY TEMENOS
-          </p>
-
-          <h1 className={styles.headline}>
-            Solutions Engineering.{' '}
-            <span className="gradient-text">AI-Assisted Building.</span> Real-World Impact.
-          </h1>
-
-          <p className={styles.copy}>
-            I work at the intersection of enterprise integrations, backend systems and
-            customer-facing engineering. At Razorpay, I help merchants navigate payment and loyalty
-            integrations, troubleshoot technical issues and reach successful go-lives. Outside my
-            core role, I use AI-assisted development to build websites, applications and technical prototypes.
-          </p>
-
-          <div className={styles.ctas}>
-            <button
-              className="btn btn-primary"
-              onClick={() => handleScrollTo('#experience')}
-              id="hero-cta-experience"
-            >
-              View experience
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              className="btn btn-secondary"
-              onClick={() => handleScrollTo('#projects')}
-              id="hero-cta-projects"
-            >
-              Selected projects
-            </button>
-            <a
-              href="https://drive.google.com/file/d/1jfjiPLLCT_gRqfX2bgElnSKmAYmh3J0r/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.resumeHeroBtn}
-              id="hero-cta-resume"
-              aria-label="View Aswin A's Resume (opens Google Drive in new tab)"
-            >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                <polyline points="14 2 14 8 20 8"/>
-                <line x1="16" y1="13" x2="8" y2="13"/>
-                <line x1="16" y1="17" x2="8" y2="17"/>
-              </svg>
-              Resume ↗
-            </a>
-          </div>
-
-          <div className={styles.meta}>
-            <span className={styles.metaItem}>
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <path d="M6 1C4.067 1 2.5 2.567 2.5 4.5c0 2.762 3.5 6.5 3.5 6.5s3.5-3.738 3.5-6.5C9.5 2.567 7.933 1 6 1zm0 4.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor"/>
-              </svg>
-              Bengaluru, India
-            </span>
-            <span className={styles.metaDot}>·</span>
-            <span className={styles.metaItem}>Solutions Engineering</span>
-            <span className={styles.metaDot}>·</span>
-            <span className={styles.metaItem}>Enterprise Payments · Backend APIs · AI-Assisted Dev</span>
+          <div className={styles.telemetryRight}>
+            <span className={styles.geoTag}>BENGALURU, INDIA</span>
+            <span className={styles.slashSep}>/</span>
+            <span className={styles.verTag}>PORTFOLIO</span>
           </div>
         </div>
 
-        {/* Right Column — Technical Illustration */}
-        <div className={styles.right} aria-label="Technical illustration">
-          <div className={styles.orbitContainer}>
-            {/* Canvas for animated orbits */}
-            <canvas ref={canvasRef} className={styles.orbitCanvas} aria-hidden="true" />
-
-            {/* Portrait */}
-            <div className={styles.portraitRing}>
-              <div className={styles.portraitFrame}>
-                <img
-                  src="/images/aswin-portrait.jpg"
-                  alt="Aswin A — Solutions Engineer"
-                  className={styles.portrait}
-                  loading="eager"
-                />
-              </div>
-              {/* Floating Nameplate Badge */}
-              <div className={styles.portraitNameplate} aria-label="Aswin A — Solutions Engineer">
-                <span className={styles.nameplateTitle}>Aswin A</span>
-                <span className={styles.nameplateDivider}>·</span>
-                <span className={styles.nameplateRole}>Solutions Engineer</span>
-              </div>
+        {/* Hero Composition Grid */}
+        <div className={styles.heroGrid}>
+          {/* Main Typographic Column (Left) */}
+          <div className={styles.mainContent}>
+            {/* Monumental Name Header */}
+            <div className={styles.nameLockup}>
+              <p className={styles.kicker}>SOLUTIONS ENGINEER @ RAZORPAY · PREVIOUSLY TEMENOS</p>
+              <h1 className={styles.monumentalName}>
+                ASWIN A<span className={styles.periodDot}>.</span>
+              </h1>
             </div>
 
-            {/* Floating orbit labels */}
-            {ORBIT_LABELS.map(({ label, angle, radius: _r }) => {
-              // Position labels around the orbit visually
-              const rad = (angle * Math.PI) / 180
-              const r = 44
-              const x = 50 + r * Math.cos(rad)
-              const y = 50 + r * Math.sin(rad)
-              return (
-                <div
-                  key={label}
-                  className={styles.orbitLabel}
-                  style={{
-                    left: `${x}%`,
-                    top: `${y}%`,
-                  }}
-                  aria-hidden="true"
-                >
-                  {label}
-                </div>
-              )
-            })}
+            {/* Expressive Editorial Headline */}
+            <h2 className={styles.editorialHeadline}>
+              Solutions Engineering.{' '}
+              <span className={styles.highlightText}>AI-Assisted Building.</span>{' '}
+              Real-World Impact.
+            </h2>
 
-            {/* System annotation */}
-            <div className={styles.annotation} aria-hidden="true">
-              <span className={styles.annotationDot} />
-              BUILD / DEBUG / SHIP
+            {/* Factual, Precise Body Copy */}
+            <p className={styles.leadCopy}>
+              I work at the intersection of solutions engineering, backend development, and customer-facing technical problem-solving. At <strong>Razorpay</strong>, I help merchants implement payment and loyalty integrations, troubleshoot technical issues, and resolve blockers during go-lives. Previously at <strong>Temenos</strong>, I built and supported Java REST APIs and backend services in a banking technology environment. Alongside my professional work, I use AI-assisted development to build applications, websites, and technical prototypes.
+            </p>
+
+            {/* Action Buttons Deck */}
+            <div className={styles.ctaDeck}>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleScrollTo('#experience')}
+                id="hero-cta-experience"
+              >
+                <span>View experience</span>
+                <span className={styles.btnArrow}>→</span>
+              </button>
+
+              <button
+                className="btn btn-secondary"
+                onClick={() => handleScrollTo('#projects')}
+                id="hero-cta-projects"
+              >
+                <span>Selected projects</span>
+              </button>
+
+              <a
+                href="https://drive.google.com/file/d/1jfjiPLLCT_gRqfX2bgElnSKmAYmh3J0r/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-signal"
+                id="hero-cta-resume"
+                aria-label="View Aswin A's Resume (Google Drive)"
+              >
+                <span>Resume ↗</span>
+              </a>
+            </div>
+
+            {/* Concise Capability Meta Line */}
+            <div className={styles.heroMetaLine}>
+              <span className={styles.metaLocation}>Bengaluru, India</span>
+              <span className={styles.metaDot}>·</span>
+              <span>Solutions Engineering</span>
+              <span className={styles.metaDot}>·</span>
+              <span>Enterprise Payments · Backend APIs · AI-Assisted Dev</span>
+            </div>
+
+            {/* Live Metrics Row */}
+            <div className={styles.metricsRow}>
+              <div className={styles.metricItem}>
+                <span className={styles.metricVal}>150+</span>
+                <span className={styles.metricLab}>Merchant Integration Requests Handled</span>
+              </div>
+              <div className={styles.metricDivider} />
+              <div className={styles.metricItem}>
+                <span className={styles.metricVal}>15+</span>
+                <span className={styles.metricLab}>Merchant Go-Lives Supported</span>
+              </div>
+              <div className={styles.metricDivider} />
+              <div className={styles.metricItem}>
+                <span className={styles.metricVal}>16+</span>
+                <span className={styles.metricLab}>REST APIs Built at Temenos</span>
+              </div>
             </div>
           </div>
+
+          {/* Right Column: Portrait Card with Restrained Systems Orbit */}
+          <div className={styles.dossierColumn}>
+            <div className={styles.orbitContainer}>
+              {/* Restrained Animated Systems Orbit Visual */}
+              <div className={styles.systemsOrbit} aria-hidden="true">
+                {/* Outer Ring with slowly orbiting node */}
+                <div className={styles.orbitRingOuter}>
+                  <span className={styles.orbitNodeOuter} />
+                </div>
+                {/* Mid Concentric Guide Ring */}
+                <div className={styles.orbitRingMid} />
+                {/* Inner Ring with counter-orbiting node */}
+                <div className={styles.orbitRingInner}>
+                  <span className={styles.orbitNodeInner} />
+                </div>
+
+                {/* 4 Compact Expertise Badges */}
+                <div className={`${styles.orbitBadge} ${styles.badgeTopLeft}`}>
+                  <span className={styles.badgeDot} />
+                  <span>API Integrations</span>
+                </div>
+                <div className={`${styles.orbitBadge} ${styles.badgeTopRight}`}>
+                  <span className={styles.badgeDot} />
+                  <span>Payment Flows</span>
+                </div>
+                <div className={`${styles.orbitBadge} ${styles.badgeBottomLeft}`}>
+                  <span className={styles.badgeDot} />
+                  <span>Backend Systems</span>
+                </div>
+                <div className={`${styles.orbitBadge} ${styles.badgeBottomRight}`}>
+                  <span className={styles.badgeDot} />
+                  <span>Loyalty Solutions</span>
+                </div>
+              </div>
+
+              {/* Editorial Portrait Frame */}
+              <div className={styles.portraitDossier}>
+                <div className={styles.dossierCornerTL} />
+                <div className={styles.dossierCornerBR} />
+
+                <div className={styles.portraitImageWrap}>
+                  <img
+                    src="/images/aswin-portrait.jpg"
+                    alt="Aswin A — Solutions Engineer at Razorpay"
+                    className={styles.portraitPhoto}
+                    loading="eager"
+                  />
+                  <div className={styles.imageOverlay} />
+                </div>
+
+                {/* Dossier Metadata Plaque */}
+                <div className={styles.dossierPlaque}>
+                  <div className={styles.plaqueRow}>
+                    <span className={styles.plaqueKey}>NAME:</span>
+                    <span className={styles.plaqueVal}>ASWIN A</span>
+                  </div>
+                  <div className={styles.plaqueRow}>
+                    <span className={styles.plaqueKey}>ROLE:</span>
+                    <span className={styles.plaqueVal}>SOLUTIONS ENGINEER</span>
+                  </div>
+                  <div className={styles.plaqueRow}>
+                    <span className={styles.plaqueKey}>ORGANIZATION:</span>
+                    <span className={styles.plaqueVal}>RAZORPAY · EX-TEMENOS</span>
+                  </div>
+                  <div className={styles.plaqueRow}>
+                    <span className={styles.plaqueKey}>EXPERTISE:</span>
+                    <span className={styles.plaqueVal}>INTEGRATIONS · APIS · AI</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile-only compact badges strip (repositioned on small screens to prevent overlap) */}
+              <div className={styles.mobileBadgeGrid} aria-hidden="true">
+                <span className={styles.mobileBadge}><span className={styles.badgeDot} />API Integrations</span>
+                <span className={styles.mobileBadge}><span className={styles.badgeDot} />Payment Flows</span>
+                <span className={styles.mobileBadge}><span className={styles.badgeDot} />Backend Systems</span>
+                <span className={styles.mobileBadge}><span className={styles.badgeDot} />Loyalty Solutions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Editorial Scroll Invitation */}
+        <div className={styles.scrollStrip}>
+          <button
+            className={styles.scrollBtn}
+            onClick={() => handleScrollTo('#about')}
+            aria-label="Scroll to chapter 01 Profile"
+          >
+            <span className={styles.scrollLine} />
+            <span className={styles.scrollText}>SCROLL TO EXPLORE // 01 PROFILE · ASWIN A</span>
+            <span className={styles.scrollArrow}>↓</span>
+          </button>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { useRevealAll } from './hooks/useReveal'
+import SignalBackground from './components/SignalBackground'
 import Navbar from './components/Navbar'
 import CursorGlow from './components/CursorGlow'
 import Hero from './sections/Hero'
@@ -16,6 +17,7 @@ export default function App() {
 
   return (
     <>
+      <SignalBackground />
       <CursorGlow />
       <Navbar />
       <main id="main-content">

@@ -25,9 +25,8 @@ function LogoTile({ name, logo, alt }: { name: string; logo: string; alt: string
           src={logo}
           alt={alt}
           className={styles.logoImg}
-          loading="lazy"
+          loading="eager"
           onError={(e) => {
-            // Graceful fallback: show brand name
             const target = e.currentTarget
             target.style.display = 'none'
             const parent = target.parentElement
@@ -53,54 +52,59 @@ export default function Experience() {
   return (
     <section id="experience" className={`section ${styles.experience}`} aria-labelledby="experience-heading">
       <div className="container">
-        {/* Section label */}
-        <p className="section-label reveal">02 / FIELD NOTES · PROFESSIONAL EXPERIENCE</p>
+        {/* Section Header */}
+        <div className="section-meta reveal">
+          <span>02 / FIELD NOTES · PROFESSIONAL EXPERIENCE</span>
+        </div>
 
         <div className={`reveal ${styles.sectionHead}`} ref={headRef as React.RefObject<HTMLDivElement>}>
           <h2 id="experience-heading" className="section-heading">
             Built in the <span className="gradient-text">real world.</span>
           </h2>
           <p className="section-subheading">
-            Production systems. Real constraints. Practical outcomes.
+            “Production systems. Real constraints. Practical outcomes.”
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className={styles.timeline}>
-
-          {/* ── Razorpay ── */}
-          <div className={`${styles.entry} reveal`} ref={razorRef as React.RefObject<HTMLDivElement>}>
-            {/* Timeline dot */}
-            <div className={styles.timelineDot} aria-hidden="true">
-              <span className={styles.dotInner} />
+        {/* Experience Scenes */}
+        <div className={styles.scenesWrap}>
+          {/* ──────────────── SCENE 1: RAZORPAY ──────────────── */}
+          <div className={`${styles.sceneCard} reveal`} ref={razorRef as React.RefObject<HTMLDivElement>}>
+            <div className={styles.pinHeader}>
+              <div className={styles.pinStatus}>
+                <span className={styles.liveBeacon} />
+                <span>AUGUST 2024 – PRESENT</span>
+              </div>
+              <span className={styles.pinOrg}>RAZORPAY</span>
             </div>
 
-            <div className={styles.entryCard}>
-              {/* Header */}
-              <div className={styles.entryHeader}>
-                <div className={styles.companyLogo}>
+            <div className={styles.sceneBody}>
+              {/* Header: Company + Title */}
+              <div className={styles.companyRow}>
+                <div className={styles.logoWrap}>
                   <img
                     src="/images/brands/razorpay.svg"
-                    alt="Razorpay logo"
-                    className={styles.companyLogoImg}
-                    width={160}
-                    height={40}
+                    alt="Razorpay brand mark"
+                    className={styles.brandLogo}
+                    width={180}
+                    height={44}
                   />
                 </div>
-                <div className={styles.entryMeta}>
-                  <span className={styles.entryRole}>Solutions Engineer</span>
-                  <span className={styles.entryPeriod}>Aug 2024 – Present</span>
+                <div className={styles.roleBlock}>
+                  <h3 className={styles.roleTitle}>Solutions Engineer</h3>
+                  <span className={styles.roleMeta}>Bengaluru, India</span>
                 </div>
               </div>
 
-              {/* Focus chips */}
-              <div className={styles.focusChips}>
-                {['Enterprise Solutions', 'Payment Gateway', 'Engage Loyalty'].map(c => (
-                  <span key={c} className={`tag ${styles.focusChip}`}>{c}</span>
-                ))}
+              {/* Focus Domain Tags */}
+              <div className={styles.chipRow}>
+                <span className={styles.signalChip}>ENTERPRISE SOLUTIONS</span>
+                <span className={styles.signalChip}>PAYMENT GATEWAY</span>
+                <span className={styles.signalChip}>ENGAGE LOYALTY</span>
               </div>
 
-              <p className={styles.entrySummary}>
+              {/* Narrative Summary */}
+              <p className={styles.summaryText}>
                 I support enterprise merchants with Payment Gateway and Engage integrations, working
                 across implementation guidance, technical troubleshooting, payment flows, loyalty
                 solutions and merchant go-lives. I work with merchant engineering teams to understand
@@ -108,95 +112,131 @@ export default function Experience() {
                 and help resolve blockers during time-sensitive go-lives.
               </p>
 
-              <ul className={styles.responsibilities}>
-                <li>Handled 150+ merchant integration requests and supported 15+ merchant go-lives.</li>
-                <li>Assisted enterprise merchants with web and mobile payment integrations.</li>
-                <li>Worked across UPI, cards, wallets, netbanking, gift cards and promotional wallets.</li>
-                <li>Investigated payment failures, retries, refunds and integration issues using browser DevTools, request/response traces and logs.</li>
-                <li>Collaborated with merchant engineering teams and internal product and engineering teams to resolve implementation blockers.</li>
-                <li>Supported time-sensitive escalations and high-priority go-lives.</li>
-              </ul>
+              {/* Responsibilities Matrix */}
+              <div className={styles.respGrid}>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>01</span>
+                  <p>Handled <strong>150+ merchant integration requests</strong> and supported <strong>15+ merchant go-lives</strong>.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>02</span>
+                  <p>Assisted enterprise merchants with web and mobile payment integrations.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>03</span>
+                  <p>Worked across UPI, cards, wallets, netbanking, gift cards and promotional wallets.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>04</span>
+                  <p>Investigated payment failures, retries, refunds and integration issues using browser DevTools, request/response traces and logs.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>05</span>
+                  <p>Collaborated with merchant engineering teams and internal product and engineering teams to resolve implementation blockers.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>06</span>
+                  <p>Supported time-sensitive escalations and high-priority go-lives.</p>
+                </div>
+              </div>
 
-              {/* Merchant Showcase */}
+              {/* Merchant Integration Showcase */}
               <div className={styles.merchantShowcase}>
                 <div className={styles.showcaseHeader}>
-                  <h3 className={styles.showcaseTitle}>Selected merchants I have supported</h3>
-                  <p className={styles.showcaseSubtitle}>
-                    Examples from a broader portfolio of enterprise merchant integrations.
-                  </p>
+                  <div className={styles.showcaseTitleWrap}>
+                    <span className={styles.showcaseDot} />
+                    <h4 className={styles.showcaseTitle}>Selected Merchants Supported</h4>
+                  </div>
+                  <span className={styles.showcaseMeta}>REPRESENTATIVE CLIENT WORK</span>
                 </div>
 
-                <div className={styles.merchantGroup}>
-                  <p className={styles.groupLabel}>
-                    <span className={styles.groupDot} style={{ background: '#67E8F9' }} aria-hidden="true" />
-                    Payment Gateway — Integrations &amp; Go-Lives
+                <div className={styles.merchantSection}>
+                  <p className={styles.merchantCategoryLabel}>
+                    GROUP 1: PAYMENT GATEWAY — INTEGRATIONS &amp; GO-LIVES
                   </p>
                   <div className={styles.logoGrid}>
-                    {GATEWAY_MERCHANTS.map(m => <LogoTile key={m.name} {...m} />)}
+                    {GATEWAY_MERCHANTS.map((m) => (
+                      <LogoTile key={m.name} {...m} />
+                    ))}
                   </div>
                 </div>
 
-                <div className={styles.merchantGroup}>
-                  <p className={styles.groupLabel}>
-                    <span className={styles.groupDot} style={{ background: '#A78BFA' }} aria-hidden="true" />
-                    Engage — Loyalty, Wallets &amp; Gift Cards
+                <div className={styles.merchantSection}>
+                  <p className={styles.merchantCategoryLabel}>
+                    GROUP 2: ENGAGE — LOYALTY, WALLETS &amp; GIFT CARDS
                   </p>
                   <div className={styles.logoGrid}>
-                    {ENGAGE_MERCHANTS.map(m => <LogoTile key={m.name} {...m} />)}
+                    {ENGAGE_MERCHANTS.map((m) => (
+                      <LogoTile key={m.name} {...m} />
+                    ))}
                   </div>
                 </div>
 
-                <p className={styles.disclaimer}>
-                  Selected examples of merchants I have supported professionally through my Razorpay role.
-                  Brand names are used to describe professional experience and do not imply endorsement.
+                <p className={styles.disclaimerText}>
+                  Selected examples of merchants I have supported professionally through my Razorpay role. Brand names are used to describe professional experience and do not imply endorsement.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* ── Temenos ── */}
-          <div className={`${styles.entry} reveal`} ref={temenosRef as React.RefObject<HTMLDivElement>}>
-            <div className={styles.timelineDot} aria-hidden="true">
-              <span className={styles.dotInner} style={{ background: '#A78BFA' }} />
+          {/* ──────────────── SCENE 2: TEMENOS ──────────────── */}
+          <div className={`${styles.sceneCard} reveal`} ref={temenosRef as React.RefObject<HTMLDivElement>}>
+            <div className={styles.pinHeader}>
+              <div className={styles.pinStatus}>
+                <span className={styles.pastDot} />
+                <span>JANUARY 2021 – SEPTEMBER 2022</span>
+              </div>
+              <span className={styles.pinOrg}>TEMENOS</span>
             </div>
 
-            <div className={styles.entryCard}>
-              <div className={styles.entryHeader}>
-                <div className={styles.companyLogo}>
+            <div className={styles.sceneBody}>
+              <div className={styles.companyRow}>
+                <div className={styles.logoWrap}>
                   <img
                     src="/images/brands/temenos.svg"
-                    alt="Temenos logo"
-                    className={styles.companyLogoImg}
-                    width={160}
-                    height={40}
+                    alt="Temenos brand mark"
+                    className={styles.brandLogo}
+                    width={180}
+                    height={44}
                   />
                 </div>
-                <div className={styles.entryMeta}>
-                  <span className={styles.entryRole}>Product Engineer / Software Engineer</span>
-                  <span className={styles.entryPeriod}>Jan 2021 – Sep 2022</span>
+                <div className={styles.roleBlock}>
+                  <h3 className={styles.roleTitle}>Product Engineer / Software Engineer</h3>
+                  <span className={styles.roleMeta}>Chennai, India</span>
                 </div>
               </div>
 
-              <div className={styles.focusChips}>
-                {['Banking Technology', 'Backend Engineering', 'REST APIs'].map(c => (
-                  <span key={c} className={`tag ${styles.focusChip}`}>{c}</span>
-                ))}
+              <div className={styles.chipRow}>
+                <span className={styles.signalChip}>BANKING TECHNOLOGY</span>
+                <span className={styles.signalChip}>BACKEND ENGINEERING</span>
+                <span className={styles.signalChip}>REST APIS</span>
               </div>
 
-              <p className={styles.entrySummary}>
+              <p className={styles.summaryText}>
                 Built and supported backend services in a banking technology environment,
                 with an emphasis on REST API reliability, microservices architecture and deployment operations.
               </p>
 
-              <ul className={styles.responsibilities}>
-                <li>Built and deployed 16+ REST APIs using Java for customer-related banking services.</li>
-                <li>Supported backend services within an ecosystem of 100+ APIs and microservices.</li>
-                <li>Worked with AWS, Docker and Kubernetes for deployment and containerized infrastructure.</li>
-                <li>Worked with PostgreSQL, MongoDB, Git, Bitbucket and test-driven development workflows.</li>
-              </ul>
+              <div className={styles.respGrid}>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>01</span>
+                  <p>Built and deployed <strong>16+ REST APIs using Java</strong> for customer-related banking services.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>02</span>
+                  <p>Supported backend services within an ecosystem of <strong>100+ APIs and microservices</strong>.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>03</span>
+                  <p>Worked with AWS, Docker and Kubernetes for deployment and containerized infrastructure.</p>
+                </div>
+                <div className={styles.respItem}>
+                  <span className={styles.respIndex}>04</span>
+                  <p>Worked with PostgreSQL, MongoDB, Git, Bitbucket and test-driven development workflows.</p>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

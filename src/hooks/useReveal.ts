@@ -55,7 +55,7 @@ export function useRevealAll(selector: string, threshold = 0.01) {
           }
         })
       },
-      { threshold, rootMargin: '0px 0px -20px 0px' }
+      { threshold, rootMargin: '100px 0px 100px 0px' }
     )
 
     elements.forEach((el) => observer.observe(el))
