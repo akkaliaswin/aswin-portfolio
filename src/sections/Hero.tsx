@@ -92,12 +92,12 @@ export default function Hero() {
             {/* Live Metrics Row */}
             <div className={styles.metricsRow}>
               <div className={styles.metricItem}>
-                <span className={styles.metricVal}>150+</span>
+                <span className={styles.metricVal}>400+</span>
                 <span className={styles.metricLab}>Merchant Integration Requests Handled</span>
               </div>
               <div className={styles.metricDivider} />
               <div className={styles.metricItem}>
-                <span className={styles.metricVal}>15+</span>
+                <span className={styles.metricVal}>40+</span>
                 <span className={styles.metricLab}>Merchant Go-Lives Supported</span>
               </div>
               <div className={styles.metricDivider} />

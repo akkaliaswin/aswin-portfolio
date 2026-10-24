@@ -2,8 +2,8 @@ import { useReveal, useCounter } from '../hooks/useReveal'
 import styles from './About.module.css'
 
 const METRICS = [
-  { value: 150, suffix: '+', label: 'Merchant integration requests handled' },
-  { value: 15, suffix: '+', label: 'Merchant go-lives supported' },
+  { value: 400, suffix: '+', label: 'Merchant integration requests handled' },
+  { value: 40, suffix: '+', label: 'Merchant go-lives supported' },
   { value: 16, suffix: '+', label: 'REST APIs built at Temenos' },
   { value: 100, suffix: '+', label: 'APIs & microservices in broader platform' },
 ]

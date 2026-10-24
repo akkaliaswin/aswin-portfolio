@@ -116,7 +116,7 @@ export default function Experience() {
               <div className={styles.respGrid}>
                 <div className={styles.respItem}>
                   <span className={styles.respIndex}>01</span>
-                  <p>Handled <strong>150+ merchant integration requests</strong> and supported <strong>15+ merchant go-lives</strong>.</p>
+                  <p>Handled <strong>400+ merchant integration requests</strong> and supported <strong>40+ merchant go-lives</strong>.</p>
                 </div>
                 <div className={styles.respItem}>
                   <span className={styles.respIndex}>02</span>
