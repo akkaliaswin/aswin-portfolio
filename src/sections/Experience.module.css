@@ -93,14 +93,30 @@
 }
 
 .logoWrap {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1rem;
+  min-height: 48px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: all var(--transition-base);
+}
+
+.logoWrap:hover {
+  border-color: var(--signal-orange);
+  box-shadow: 0 6px 20px rgba(255, 75, 38, 0.2);
 }
 
 .brandLogo {
-  height: 38px;
+  height: 28px;
+  max-height: 32px;
   width: auto;
+  max-width: 165px;
   object-fit: contain;
+  display: block;
 }
 
 .roleBlock {
@@ -343,6 +359,15 @@
   }
   .scenesWrap {
     gap: 2rem;
+  }
+  .logoWrap {
+    padding: 0.4rem 0.75rem;
+    min-height: 44px;
+  }
+  .brandLogo {
+    height: 24px;
+    max-height: 28px;
+    max-width: 145px;
   }
   .logoBox {
     width: 120px;
